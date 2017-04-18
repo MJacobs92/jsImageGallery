@@ -1,18 +1,50 @@
 "use strict";
 
+var IMAGES = [];
+
 function initialLoad() {
 	$('add').onclick = addButtonClicked;
 	$('delete').onclick = deleteButtonClicked;
 }
 
 function addButtonClicked() {
+
 	$('errorDiv').update();
 	var imageURL = $('imageURL').getValue()
 
 	if(!validateURL(imageURL)){
 		$('errorDiv').update('Please enter a valid URL');
 	}
+
+	if(!arrayContains(imageURL)){
+		IMAGES.push(imageURL);
+		updateImages();
+	}
 	
+}
+
+function updateImages(){
+	$('imagelist').update();
+
+	for (var index = 0; index < IMAGES.length; ++index) {
+  		var image = IMAGES[index];
+ 		 $('imagelist').insert({
+  top: new Element('img', {src: image, width: "100", height: "100"})
+});
+
+}
+}
+
+function arrayContains(imageURL){
+	var result = IMAGES.indexOf(imageURL);
+	console.log(result);
+
+	if(result == -1){
+		return false;
+	}
+	else{
+		return true;
+	}
 }
 
 function validateURL(imageURL){
