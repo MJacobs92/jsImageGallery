@@ -28,3 +28,8 @@ body {
    margin: auto;
     width: 15%;
 }
+.error {
+   margin: auto;
+    width: 15%;
+    color: red;
+}
