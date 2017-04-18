@@ -53,6 +53,15 @@ function validateURL(imageURL){
 }
 
 function deleteButtonClicked() {
+	$('errorDiv').update();
+	var imageURL = $('imageURL').getValue()
+
+	if(!arrayContains(imageURL)){
+		$('errorDiv').update('Image does not exist in planning area!');
+	}
+
+	IMAGES = IMAGES.without(imageURL);
+	updateImages();
 	
 }
 
