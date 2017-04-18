@@ -5,21 +5,28 @@ var IMAGES = [];
 function initialLoad() {
 	$('add').onclick = addButtonClicked;
 	$('delete').onclick = deleteButtonClicked;
+	$('imageURL').observe("change", clearError);
+
 }
+
+
 
 function addButtonClicked() {
 
-	$('errorDiv').update();
+	clearError();
 	var imageURL = $('imageURL').getValue()
 
 	if(!validateURL(imageURL)){
 		$('errorDiv').update('Please enter a valid URL');
 	}
-
-	if(!arrayContains(imageURL)){
+	else{
+		if(!arrayContains(imageURL)){
 		IMAGES.push(imageURL);
 		updateImages();
 	}
+	}
+
+	
 	
 }
 
@@ -53,7 +60,7 @@ function validateURL(imageURL){
 }
 
 function deleteButtonClicked() {
-	$('errorDiv').update();
+	clearError();
 	var imageURL = $('imageURL').getValue()
 
 	if(!arrayContains(imageURL)){
@@ -63,6 +70,10 @@ function deleteButtonClicked() {
 	IMAGES = IMAGES.without(imageURL);
 	updateImages();
 	
+}
+
+function clearError(){
+	$('errorDiv').update();
 }
 
 window.onload = initialLoad;
