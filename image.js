@@ -5,7 +5,7 @@ var IMAGES = [];
 function initialLoad() {
 	$('add').onclick = addButtonClicked;
 	$('delete').onclick = deleteButtonClicked;
-	$('imageURL').observe("change", clearError);
+	$('imageURL').observe("keydown", clearError);
 
 }
 
